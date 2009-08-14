@@ -1,10 +1,10 @@
 /**This is mostly from the Steinberg API **/
-#include "VSTName.h"
-#include "VSTNameController.h"
+#include "Delayzor.h"
+#include "DelayzorController.h"
 
 #include "VST/public.sdk/source/main/pluginfactory.h"
 
-#define stringPluginName "VSTName"
+#define stringPluginName "Delayzor"
 
 #define PLUGINVERSION "1.0.0"
 void* hInstance = 0;
@@ -36,7 +36,7 @@ BEGIN_FACTORY_DEF ("COMPANY",
 				"Fx",					// Subcategory for this plug-in (to be changed)
 				PLUGINVERSION,		// plug-in version (to be changed)
 				kVstVersionString,		// the VST 3 SDK version (dont changed this, use always this define)
-				VSTName::createInstance)	// function pointer called when this component should be instanciated
+				Delayzor::createInstance)	// function pointer called when this component should be instanciated
 
 	// its kVstComponentControllerClass component
 	DEF_CLASS2 (INLINE_UID(CONTROLLER_GUID1,CONTROLLER_GUID2,CONTROLLER_GUID3,CONTROLLER_GUID4),
@@ -47,7 +47,7 @@ BEGIN_FACTORY_DEF ("COMPANY",
 				"",						// not used here
 				PLUGINVERSION,		// plug-in version (to be changed)
 				kVstVersionString,		// the VST 3 SDK version (dont changed this, use always this define)
-				VSTNameController::createInstance)// function pointer called when this component should be instanciated
+				DelayzorController::createInstance)// function pointer called when this component should be instanciated
 
 	//----for others plug-ins contained in this factory, put like for the first plug-in different DEF_CLASS2---
 

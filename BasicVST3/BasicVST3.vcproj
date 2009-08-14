@@ -181,15 +181,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Delayzor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DelayzorController.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PluginEntry.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\VSTName.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\VSTNameController.cpp"
 				>
 			</File>
 			<Filter
@@ -319,11 +319,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\VSTName.h"
+				RelativePath=".\Delayzor.h"
 				>
 			</File>
 			<File
-				RelativePath=".\VSTNameController.h"
+				RelativePath=".\DelayzorController.h"
 				>
 			</File>
 			<Filter

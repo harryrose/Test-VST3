@@ -3,9 +3,9 @@
  * in the Steinberg VST 3 API.
  */
 
-#ifndef _VSTNAME_H_
-#define _VSTNAME_H_
-
+#ifndef _Delayzor_H_
+#define _Delayzor_H_
+#include <stdlib.h>
 #include "VST/public.sdk/source/vst/vstaudioeffect.h"
 
 //Define the GUID of the VST Plugin.  Change this to something unique.
@@ -20,14 +20,57 @@
 
 using namespace Steinberg::Vst;
 
-class VSTName : public AudioEffect
+class Delayzor : public AudioEffect
 {
+private:
+	static const unsigned int numberOfInputChannels = 2;
+	
+	float * buffer[numberOfInputChannels];
+
+	static int nextPowerO2(int x)
+	{
+		/** Code stolen from 
+			http://www.gamedev.net/community/forums/topic.asp?topic_id=313734
+			Thanks, Ra
+		**/
+		x--;
+		x |= x >> 1;
+		x |= x >> 2;
+		x |= x >> 4;
+		x |= x >> 8;
+		x |= x >> 16;
+		x++;
+		return x;
+	}
+
+	tresult initBuffers(const unsigned int size)
+	{
+		int bufferSize = nextPowerO2(size);
+		for(int i = 0; i < numberOfInputChannels; i++)
+		{
+			if(buffer[i] != NULL)
+			{
+				free(buffer[i]);
+			}
+			buffer[i] = (float *) malloc(bufferSize * sizeof(float));
+			if(!buffer[i])
+			{
+				for(;i>=0; i--)
+				{
+					free(buffer[i]);
+					return kResultFalse;
+				}
+			}
+		}
+		return kResultOk;
+	}
+
 public:
-	VSTName(void);
+	Delayzor(void);
 
 	static FUnknown * createInstance(void * context)
 	{
-		return (IAudioProcessor*) new VSTName();
+		return (IAudioProcessor*) new Delayzor();
 	}
 
 	//called after the constructor
@@ -52,8 +95,8 @@ public:
 	
 	//Sorts out inputs and outputs etc.
 	tresult PLUGIN_API setBusArrangements(SpeakerArrangement * inputs, int32 numIns, SpeakerArrangement * outputs, int32 numOuts);
-	~VSTName(void);
+	~Delayzor(void);
 };
 
 
-#endif //#ifndef _VSTNAME_H_
+#endif //#ifndef _Delayzor_H_
