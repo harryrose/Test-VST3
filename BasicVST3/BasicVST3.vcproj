@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="BasicVST3"
+	Name="Delayzor"
 	ProjectGUID="{B374A6D9-7930-4187-BD16-4A2F1C65C3E3}"
 	RootNamespace="BasicVST3"
 	TargetFrameworkVersion="196613"

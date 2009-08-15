@@ -10,7 +10,7 @@
 
 //Define the GUID of the VST Plugin.  Change this to something unique.
 
-#define PLUGIN_GUID1 0xA8E29FFF
+#define PLUGIN_GUID1 0xA8E29DFF
 #define PLUGIN_GUID2 0x77E24203
 #define PLUGIN_GUID3 0x97D7D1B5
 #define PLUGIN_GUID4 0xD77767F4
@@ -26,6 +26,10 @@ private:
 	static const unsigned int numberOfInputChannels = 2;
 	
 	float * buffer[numberOfInputChannels];
+	int bufferPosition;
+	int bufferSize;
+	int noSamplesDelay;
+	float delayMultiplier;
 
 	static int nextPowerO2(int x)
 	{
@@ -45,13 +49,10 @@ private:
 
 	tresult initBuffers(const unsigned int size)
 	{
-		int bufferSize = nextPowerO2(size);
+		bufferPosition = 0;
+		bufferSize = nextPowerO2(size);
 		for(int i = 0; i < numberOfInputChannels; i++)
 		{
-			if(buffer[i] != NULL)
-			{
-				free(buffer[i]);
-			}
 			buffer[i] = (float *) malloc(bufferSize * sizeof(float));
 			if(!buffer[i])
 			{
@@ -61,6 +62,7 @@ private:
 					return kResultFalse;
 				}
 			}
+			memset(buffer[i],0,bufferSize * sizeof(float));
 		}
 		return kResultOk;
 	}

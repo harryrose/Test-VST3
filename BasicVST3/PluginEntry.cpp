@@ -22,9 +22,9 @@ bool DeinitModule ()
 	return true; 
 }
 
-BEGIN_FACTORY_DEF ("COMPANY", 
-			   "WEBSITE", 
-			   "CONTACT")
+BEGIN_FACTORY_DEF ("Harry Rose", 
+				   "http://harryrose.org", 
+				   "harry@harryrose.org")
 
 	//---First Plug-in included in this factory-------
 	// its kVstAudioEffectClass component

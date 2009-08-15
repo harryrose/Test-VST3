@@ -6,7 +6,7 @@ using namespace Steinberg::Vst;
 
 //Define the GUID of the Controller Component, be sure to change this to something original...
 
-#define CONTROLLER_GUID1 0xA0D6A030
+#define CONTROLLER_GUID1 0xA0D6AD30
 #define CONTROLLER_GUID2 0xBC4544CC
 #define CONTROLLER_GUID3 0xA33ECB9E
 #define CONTROLLER_GUID4 0xC4C58F85
